@@ -3,6 +3,9 @@ const jwt = require('jsonwebtoken');
 
 // Generate JWT token
 const generateToken = (user) => {
+  if (!process.env.JWT_SECRET) {
+    throw new Error('JWT_SECRET environment variable is not set.');
+  }
   return jwt.sign(
     { id: user._id, email: user.email, role: user.role },
     process.env.JWT_SECRET,

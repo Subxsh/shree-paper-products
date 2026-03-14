@@ -56,6 +56,16 @@ app.get('*', (req, res) => {
 const PORT = process.env.PORT || 5000;
 
 const startServer = async () => {
+  // Guard: fail loudly if critical env vars are missing
+  if (!process.env.JWT_SECRET) {
+    console.error('FATAL: JWT_SECRET environment variable is not set. Set it in Render Environment Variables.');
+    process.exit(1);
+  }
+  if (!process.env.MONGO_URI && !process.env.MONGODB_URI) {
+    console.error('FATAL: MONGO_URI environment variable is not set. Set it in Render Environment Variables.');
+    process.exit(1);
+  }
+
   try {
     await connectDB();
     
