@@ -2,6 +2,7 @@ require('dotenv').config();
 require('express-async-errors');
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const connectDB = require('./config/database');
 
 // Initialize app
@@ -18,6 +19,12 @@ app.use('/api/orders', require('./routes/orderRoutes'));
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/custom-orders', require('./routes/customOrderRoutes'));
 
+// Serve frontend build files when deployed as a single service.
+if (process.env.NODE_ENV === 'production') {
+  const frontendBuildPath = path.join(__dirname, '..', 'frontend', 'build');
+  app.use(express.static(frontendBuildPath));
+}
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'Server is running' });
@@ -32,9 +39,17 @@ app.use((err, req, res, next) => {
   });
 });
 
-// 404 handler
-app.use((req, res) => {
+// API-specific 404 handler
+app.use('/api', (req, res) => {
   res.status(404).json({ message: 'Route not found' });
+});
+
+// SPA fallback for client-side routes in production.
+app.get('*', (req, res) => {
+  if (process.env.NODE_ENV === 'production') {
+    return res.sendFile(path.join(__dirname, '..', 'frontend', 'build', 'index.html'));
+  }
+  return res.status(404).json({ message: 'Route not found' });
 });
 
 // Start server
