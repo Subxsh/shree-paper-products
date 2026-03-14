@@ -1,0 +1,383 @@
+/* ============================================
+   NAVBAR STYLING - SHREE PAPER PRODUCTS
+   Professional Light Theme with Mobile Responsiveness
+   ============================================ */
+
+/* Main Navbar Container */
+.navbar {
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 0;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.navbar.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 100%;
+}
+
+/* Logo / Company Name */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #003366;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.navbar-logo:hover {
+  color: #0052a3;
+  transform: scale(1.02);
+}
+
+.logo-icon {
+  font-size: 28px;
+  display: inline-block;
+}
+
+.logo-text {
+  background: linear-gradient(135deg, #003366 0%, #0052a3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Navigation Menu */
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 35px;
+  align-items: center;
+}
+
+.navbar-item {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-link {
+  color: #333333;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+.navbar-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #0052a3;
+  transition: width 0.3s ease;
+}
+
+.navbar-link:hover {
+  color: #0052a3;
+  background-color: #e3f2fd;
+}
+
+.navbar-link:hover::after {
+  width: 100%;
+}
+
+/* Active Link State */
+.navbar-link.active {
+  color: #1e40af;
+  background-color: #e3f2fd;
+  font-weight: 600;
+}
+
+.navbar-link.active::after {
+  width: 100%;
+  background-color: #1e40af;
+  height: 3px;
+}
+
+/* Special Login Link Style */
+.navbar-login {
+  background-color: #0052a3;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.navbar-login:hover {
+  background-color: #003d80;
+  color: white;
+}
+
+.navbar-login::after {
+  display: none;
+}
+
+/* User Info Section */
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-left: 15px;
+  border-left: 2px solid #e0e0e0;
+}
+
+.user-name {
+  color: #333333;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.logout-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #d32f2f;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(244, 67, 54, 0.3);
+}
+
+/* ============================================
+   HAMBURGER MENU (Mobile)
+   ============================================ */
+
+.hamburger-icon {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 6px;
+}
+
+.hamburger-icon span {
+  width: 28px;
+  height: 3px;
+  background-color: #333333;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.hamburger-icon span.active:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger-icon span.active:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-icon span.active:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablet and smaller screens */
+@media screen and (max-width: 768px) {
+  .navbar {
+    height: 60px;
+  }
+
+  .navbar-container {
+    padding: 0 15px;
+  }
+
+  .logo-icon {
+    font-size: 24px;
+  }
+
+  .logo-text {
+    font-size: 16px;
+    display: none;
+  }
+
+  .navbar-logo {
+    font-size: 16px;
+    gap: 8px;
+  }
+
+  .hamburger-icon {
+    display: flex;
+  }
+
+  .navbar-menu {
+    position: fixed;
+    left: -100%;
+    top: 60px;
+    flex-direction: column;
+    background-color: #f5f5f5;
+    width: 100%;
+    text-align: left;
+    transition: 0.3s;
+    bottom: 0;
+    padding: 20px 0;
+    gap: 0;
+    border-bottom: 1px solid #e0e0e0;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-menu.active {
+    left: 0;
+  }
+
+  .navbar-item {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .navbar-link {
+    display: block;
+    padding: 15px 20px;
+    border-radius: 0;
+    width: 100%;
+    color: #333333;
+  }
+
+  .navbar-link::after {
+    display: none;
+  }
+
+  .navbar-link:hover {
+    background-color: #e3f2fd;
+    color: #0052a3;
+  }
+
+  .navbar-user {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
+    border-left: none;
+    border-top: 1px solid #e0e0e0;
+    gap: 10px;
+  }
+
+  .user-name {
+    display: block;
+  }
+
+  .logout-btn {
+    width: 100%;
+  }
+
+  .navbar-login {
+    display: block;
+    width: auto;
+    margin: 0 20px;
+    text-align: center;
+  }
+}
+
+/* Mobile screens (small phones) */
+@media screen and (max-width: 480px) {
+  .navbar {
+    height: 55px;
+  }
+
+  .navbar-container {
+    padding: 0 12px;
+  }
+
+  .logo-icon {
+    font-size: 22px;
+  }
+
+  .hamburger-icon span {
+    width: 24px;
+    height: 2.5px;
+  }
+
+  .navbar-menu {
+    top: 55px;
+  }
+
+  .navbar-link {
+    padding: 12px 15px;
+    font-size: 14px;
+  }
+
+  .user-name {
+    font-size: 13px;
+  }
+
+  .logout-btn {
+    padding: 5px 12px;
+    font-size: 12px;
+  }
+}
+
+/* ============================================
+   Accessibility & Focus States
+   ============================================ */
+
+.navbar-link:focus-visible,
+.logout-btn:focus-visible,
+.hamburger-icon:focus-visible {
+  outline: 2px solid #0052a3;
+  outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+  .navbar {
+    position: relative;
+    box-shadow: none;
+  }
+
+  .hamburger-icon {
+    display: none;
+  }
+
+  .navbar-menu {
+    position: static;
+    left: 0;
+    background-color: transparent;
+    flex-direction: row;
+    gap: 20px;
+  }
+}
